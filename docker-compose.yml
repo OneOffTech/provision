@@ -1,0 +1,16 @@
+version: '2'
+networks:
+  external:
+    external: true
+services:
+  ansible_commander:
+    build: ./build
+    container_name: ansible_commander
+    volumes:
+      - ./data/ansible.hosts:/ansible/playbooks/ansible.hosts:ro
+      - ./data/playbook.yml:/ansible/playbooks/playbook.yml:ro
+      - ./data/roles:/ansible/playbooks/roles:ro
+      - ./data/ssh:/root/.ssh:ro
+    privileged: true
+    networks:
+      - external
