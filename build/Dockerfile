@@ -23,6 +23,7 @@ RUN \
     py-yaml \
     tar
 
+RUN pip install --upgrade python-keyczar pykeepass
 RUN rm -rf /var/cache/apk/*
 
 RUN mkdir /etc/ansible/ /ansible
@@ -35,6 +36,7 @@ RUN \
   rm -fr ansible.tar.gz /ansible/docs /ansible/examples /ansible/packaging
 
 RUN mkdir -p /ansible/playbooks
+ADD ./files /ansible/playbooks
 WORKDIR /ansible/playbooks
 
 ENV ANSIBLE_GATHERING smart
@@ -45,4 +47,4 @@ ENV ANSIBLE_SSH_PIPELINING True
 ENV PATH /ansible/bin:$PATH
 ENV PYTHONPATH /ansible/lib
 
-ENTRYPOINT ["ansible-playbook"]
+ENTRYPOINT ["./ansible-playbook-wrapper"]

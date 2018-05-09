@@ -1,6 +1,6 @@
 # Provision
 
-This repository holds a sharable and "all configuration described in code" **provision and deployment system** around [Ansible](https://www.ansible.com/).
+This repository holds a sharable and "all configuration described in code" **provision and deployment system** around [Ansible](https://www.ansible.com/). It relies on a simple and encrypted [KeePass](https://keepass.info) storage file to manage the passwords of deployed machines.
 
 ## Requirements
 
@@ -15,6 +15,7 @@ Before you start, all essential things for Ansible need to be placed into the `d
 * `data`/`roles` - The [Ansible roles](https://docs.ansible.com/ansible/devel/user_guide/playbooks_reuse_roles.html), which are available (if managing with git, they can be perfectly included as _[submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)_).
 * `data`/`ssh`/`id_rsa` - The private key of a ssh key pair to connect to machines.
 * `data`/`ssh`/`id_rsa.pub` - The public key of a ssh key pair to connect to machines.
+* `data`/`passwords.kdbx` - A [KeePass](https://keepass.info) database file, holding the passwords of the users on the deployed machines.
 
 > You can also have a look at the [example data repository](https://github.com/OneOffTech/provision-data-example) to get a better idea.
 

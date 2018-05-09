@@ -10,6 +10,7 @@ services:
       - ./data/ansible.hosts:/ansible/playbooks/ansible.hosts:ro
       - ./data/playbook.yml:/ansible/playbooks/playbook.yml:ro
       - ./data/roles:/ansible/playbooks/roles:ro
+      - ./data/passwords.kdbx:/ansible/passwords.kdbx:ro
       - ./data/ssh:/root/.ssh:ro
     privileged: true
     networks:
