@@ -44,6 +44,7 @@ ENV ANSIBLE_HOST_KEY_CHECKING false
 ENV ANSIBLE_RETRY_FILES_ENABLED false
 ENV ANSIBLE_ROLES_PATH /ansible/playbooks/roles
 ENV ANSIBLE_SSH_PIPELINING True
+ENV ANSIBLE_LOOKUP_PLUGINS /ansible/playbooks/lookup_plugins
 ENV PATH /ansible/bin:$PATH
 ENV PYTHONPATH /ansible/lib
 

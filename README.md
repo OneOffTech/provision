@@ -11,7 +11,7 @@ However, in order to use this setup, none of the mentioned programs are a requir
 Before you start, all essential things for Ansible need to be placed into the `data` directory. Please add:
 
 * `data`/`ansible.hosts` - A typical [Ansible inventory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html) listing your machines, their IP addresses and SSH ports.
-* `data`/`playbook.yml` - An [Ansible playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html) to be used.
+* `data`/`playbooks` - One or more [Ansible playbooks](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html) to be available.
 * `data`/`roles` - The [Ansible roles](https://docs.ansible.com/ansible/devel/user_guide/playbooks_reuse_roles.html), which are available (if managing with git, they can be perfectly included as _[submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)_).
 * `data`/`ssh`/`id_rsa` - The private key of a ssh key pair to connect to machines.
 * `data`/`ssh`/`id_rsa.pub` - The public key of a ssh key pair to connect to machines.
@@ -29,13 +29,13 @@ You may want to put and manage all this private (!) data in a git repository, wi
 
 Deployment happens through a docker container which runs ansible.
 
-* Apply everything to all: `docker-compose run --rm ansible_commander -i ansible.hosts playbook.yml`
-* Apply everything to one server: `docker-compose run --rm ansible_commander -i ansible.hosts -l YOURSERVER playbook.yml`
+* Apply everything to all: `docker-compose run --rm ansible_commander -i ansible.hosts playbooks/install.yml`
+* Apply everything to one server: `docker-compose run --rm ansible_commander -i ansible.hosts -l YOURSERVER playbooks/install.yml`
 
 ## Local deployment
 
 For local deployment,  the setup can not be deployed from a Docker container. Instead, Ansible must be installed:
 
 ```bash
-ansible-playbook -i "localhost," -c 127.0.0.1 data/playbook.yml
+ansible-playbook -i "localhost," -c 127.0.0.1 data/playbooks/install.yml
 ```
