@@ -23,21 +23,15 @@ RUN \
     py-yaml \
     tar
 
-RUN pip install --upgrade python-keyczar pykeepass
-RUN rm -rf /var/cache/apk/*
-
 RUN mkdir /etc/ansible/ /ansible
 RUN echo "[local]" >> /etc/ansible/hosts && \
-    echo "localhost" >> /etc/ansible/hosts
-
-RUN \
-  curl -fsSL https://github.com/ansible/ansible/archive/v2.3.1.0-1.tar.gz -o ansible.tar.gz && \
-  tar -xzf ansible.tar.gz -C ansible --strip-components 1 && \
-  rm -fr ansible.tar.gz /ansible/docs /ansible/examples /ansible/packaging
-
+    echo "localhost" >> /etc/ansible/host
 RUN mkdir -p /ansible/playbooks
 ADD ./files /ansible/playbooks
 WORKDIR /ansible/playbooks
+
+RUN pip install --upgrade python-keyczar pykeepass ansible
+RUN rm -rf /var/cache/apk/*
 
 ENV ANSIBLE_GATHERING smart
 ENV ANSIBLE_HOST_KEY_CHECKING false
