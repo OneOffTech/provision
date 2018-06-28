@@ -8,5 +8,5 @@ services:
       - ./data/playbooks/:/ansible/playbooks/playbooks:ro
       - ./data/ansible.hosts:/ansible/playbooks/ansible.hosts:ro
       - ./data/roles:/ansible/playbooks/roles:ro
-      - ./data/passwords.kdbx:/ansible/passwords.kdbx:ro
+      - ./data/passwords.kdbx:/ansible/passwords.kdbx:rw
       - ./data/ssh:/root/.ssh:ro
