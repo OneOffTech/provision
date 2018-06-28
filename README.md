@@ -20,7 +20,10 @@ Before you start, all essential things for Ansible need to be placed into the
 * `data`/`ansible.hosts` - A typical [Ansible
   inventory](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html)
   listing your machines, their IP addresses and SSH ports.
-* `data`/`host_vars` - Directory containing [Host specific
+* `data`/`group_vars` - Directory containing [Group specific
+  variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)
+  for the deployment.
+  * `data`/`host_vars` - Directory containing [Host specific
   variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)
   for the deployment.
 * `data`/`playbooks` - One or more [Ansible
