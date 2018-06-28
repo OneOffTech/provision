@@ -48,4 +48,4 @@ ENV ANSIBLE_LOOKUP_PLUGINS /ansible/playbooks/lookup_plugins
 ENV PATH /ansible/bin:$PATH
 ENV PYTHONPATH /ansible/lib
 
-ENTRYPOINT ["./ansible-playbook-wrapper"]
+ENTRYPOINT ["/bin/bash", "./ansible-playbook-wrapper"]
