@@ -47,4 +47,4 @@ ENV ANSIBLE_SSH_PIPELINING True
 ENV PATH /ansible/bin:$PATH
 ENV PYTHONPATH /ansible/lib
 
-ENTRYPOINT ["./ansible-playbook-wrapper"]
+ENTRYPOINT ["/bin/bash", "./ansible-playbook-wrapper"]
