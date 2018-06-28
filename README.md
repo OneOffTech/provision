@@ -23,9 +23,9 @@ Before you start, all essential things for Ansible need to be placed into the
 * `data`/`host_vars` - Directory containing [Host specific
   variables](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)
   for the deployment.
-* `data`/`playbook.yml` - An [Ansible
-  playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html)
-  to be used.
+* `data`/`playbooks` - One or more [Ansible
+  playbooks](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html)
+  to be available.
 * `data`/`roles` - The [Ansible
   roles](https://docs.ansible.com/ansible/devel/user_guide/playbooks_reuse_roles.html),
   which are available (if managing with git, they can be perfectly included as
@@ -60,9 +60,9 @@ _[submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules)_:
 Deployment happens through a docker container which runs ansible.
 
 * Apply everything to all: `docker-compose run --rm ansible_commander -i
-  ansible.hosts playbook.yml`
+  ansible.hosts playbooks/install.yml`
 * Apply everything to one server: `docker-compose run --rm ansible_commander -i
-  ansible.hosts -l YOURSERVER playbook.yml`
+  ansible.hosts -l YOURSERVER playbooks/install.yml`
 
 ## Local deployment
 
@@ -70,7 +70,7 @@ For local deployment,  the setup can not be deployed from a Docker container.
 Instead, Ansible must be installed:
 
 ```bash
-ansible-playbook -i "localhost," -c 127.0.0.1 data/playbook.yml
+ansible-playbook -i "localhost," -c 127.0.0.1 data/playbooks/install.yml
 ```
 
 ## Local Installation
