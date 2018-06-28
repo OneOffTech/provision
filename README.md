@@ -41,6 +41,40 @@ For local deployment,  the setup can not be deployed from a Docker container. In
 ansible-playbook -i "localhost," -c 127.0.0.1 data/playbook.yml
 ```
 
+## Local Installation
+
+### Prerequesites
+
+* Install [Debian](https://www.debian.org/CD/netinst/).
+  * If encryption is needed, create a LUKS encrypted LVM partition and
+    mount it on `/data`.
+  * Only install `Standard system utilities` and `SSH server` tasks.
+* Allow root (administrator) logins (use keypairs or a strong password).
+* Don't create an normal user account, this will be done by the playbooks.
+* Register a domain name and point it to your server's public IP address.
+* If your server is behind a NAT gateway, setup port forwards on your
+  router. How to do so depends on your router model, please consult the
+  manufacturers documentation.
+
+At least the following ports will need to be forwarded (may be changed in
+configuration):
+
+```
+    OpenSSH server: TCP 54646
+    Web services:   TCP 80 + TCP 443
+    OpenVPN server: TCP 1194 + UDP 1194
+```
+
+### On administrating machine
+
+To manage hosts with [ansible](http://ansible.com/) you need to install
+`ansible` on your machine:
+
+```debian
+sudo apt install python-pip
+sudo pip install ansible pykeepass passlib
+```
+
 ### Only run certain roles
 
 To save time, you can tell ansible to only run certain playbooks by
