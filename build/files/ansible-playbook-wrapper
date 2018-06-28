@@ -18,7 +18,7 @@ if [ -z "${KEEPASS}" -a -r "${KEEPASS_FILE_CONFIG}" ]; then
 fi
 
 if [ -z "${KEEPASS}" ]; then
-  echo -n "Keepass file path (…servers.kdbx): "
+  echo -n "Keepass file path (${KEEPASS}): "
   read -r KEEPASS
 fi
 
