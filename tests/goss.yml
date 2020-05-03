@@ -1,14 +1,9 @@
 
 file:
-    /goss/docker_output.log:
+    ./docker_output.log:
       exists: true
       contains:
         - "is not readable file"
         - "Keepass file path ()"
         - "exit"
-package:
-    curl:
-      installed: true
-    python:
-      installed: true
       
