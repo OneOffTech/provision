@@ -27,7 +27,7 @@ jobs:
         curl -sL https://github.com/aelsabbahy/goss/releases/download/v0.3.10/goss-linux-amd64 -o ./goss
         chmod +rx ./goss
         docker run --rm $NAMESPACE:$IMAGE_VERSION > ./docker_output.log || true
-        ./goss -g goss.yml v
+        ./goss -g ./tests/goss.yml v
     - name: Prepare push
       uses: azure/docker-login@v1
       if: github.event_name == 'push'
