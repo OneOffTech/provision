@@ -29,7 +29,7 @@ jobs:
         chmod +rx ./dgoss
         chmod +rx ~/goss-linux-amd64
         export GOSS_PATH=~/goss-linux-amd64
-        dgoss run $NAMESPACE:$IMAGE_VERSION
+        ./dgoss run $NAMESPACE:$IMAGE_VERSION
     - name: Prepare push
       uses: azure/docker-login@v1
       if: github.event_name == 'push'
