@@ -24,9 +24,9 @@ jobs:
         docker build --pull --compress --cache-from $NAMESPACE:$IMAGE_VERSION --build-arg VCS_REF=$CI_COMMIT_SHORT_SHA --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') -t $NAMESPACE:$IMAGE_VERSION .
     - name: Test using Goss
       run: |
-        curl -L https://raw.githubusercontent.com/aelsabbahy/goss/master/extras/dgoss/dgoss -o /usr/local/bin/dgoss
+        curl -L https://raw.githubusercontent.com/aelsabbahy/goss/master/extras/dgoss/dgoss -o ./dgoss
         curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.10/goss-linux-amd64 -o ~/goss-linux-amd64
-        chmod +rx /usr/local/bin/dgoss
+        chmod +rx ./dgoss
         chmod +rx ~/goss-linux-amd64
         export GOSS_PATH=~/goss-linux-amd64
         dgoss run $NAMESPACE:$IMAGE_VERSION
