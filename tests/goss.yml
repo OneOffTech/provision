@@ -5,5 +5,4 @@ file:
       contains:
         - "is not readable file"
         - "Keepass file path ()"
-        - "exit"
       
