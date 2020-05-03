@@ -2,7 +2,7 @@ version: '2'
 
 services:
   ansible_commander:
-    build: ./build
+    image: "oneofftech/ansible-keepass"
     container_name: ansible_commander
     volumes:
       - ./data/playbooks/:/ansible/playbooks/playbooks:ro
