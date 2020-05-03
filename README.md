@@ -45,7 +45,7 @@ Before you start, all essential things for Ansible need to be placed into the
 
 ## Server deployment
 
-Deployment happens through a docker container which runs ansible.
+Deployment happens through a Docker container which runs Ansible.
 
 - Apply everything to all: `docker-compose run --rm ansible_commander -i ansible.hosts playbooks/install.yml`
 - Apply everything to one server: `docker-compose run --rm ansible_commander -i ansible.hosts -l YOURSERVER playbooks/install.yml`

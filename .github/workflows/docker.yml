@@ -1,0 +1,40 @@
+name: Build Docker Image
+
+on: 
+  push:
+    branches: 
+      - "master"
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_VERSION: 'latest'
+      NAMESPACE: 'oneofftech/ansible-keepass'
+      CI_COMMIT_SHORT_SHA: ${{github.sha}}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 1
+    - name: Build the Docker image 
+      run: |
+        docker pull $NAMESPACE:$IMAGE_VERSION || true
+        docker build --pull --compress --cache-from $NAMESPACE:$IMAGE_VERSION --build-arg VCS_REF=$CI_COMMIT_SHORT_SHA --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') -t $NAMESPACE:$IMAGE_VERSION .
+    - name: Test using Goss
+      run: |
+        curl -sL https://github.com/aelsabbahy/goss/releases/download/v0.3.10/goss-linux-amd64 -o ./goss
+        chmod +rx ./goss
+        docker run --rm $NAMESPACE:$IMAGE_VERSION > ./docker_output.log || true
+        ./goss -g ./tests/goss.yml v
+    - name: Prepare push
+      uses: azure/docker-login@v1
+      if: github.event_name == 'push'
+      with:
+        username: ${{ secrets.CI_REGISTRY_USER }}
+        password: ${{ secrets.CI_REGISTRY_PASSWORD }}
+    - name: Push the Docker image
+      if: github.event_name == 'push'
+      run: |
+        docker push $NAMESPACE:$IMAGE_VERSION
