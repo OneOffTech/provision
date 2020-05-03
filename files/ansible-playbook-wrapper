@@ -6,6 +6,7 @@
 #
 KEEPASS_FILE_CONFIG=".keepass_file_path"
 if [ -z "${KEEPASS}" ] && [ -r "${KEEPASS_FILE_CONFIG}" ]; then
+  # shellcheck disable=SC2002
   KEEPASS="$(cat ${KEEPASS_FILE_CONFIG} | xargs)"
 
   # If the path is empty or does not exist, delete the conf
