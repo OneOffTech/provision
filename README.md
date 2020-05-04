@@ -58,6 +58,8 @@ docker-compose run --rm ansible -i {ansible_hosts} {playbook}
 # e.g. docker-compose run --rm ansible -i ansible.hosts playbooks/install.yml
 ```
 
+> It is assumed that the `data` folder is placed at the same level as the `docker-compose.yml` file
+
 Where `{ansible_hosts}` is the file that contains the Ansible inventory and `{playbook}` is 
 the path to the playbook to run.
 
